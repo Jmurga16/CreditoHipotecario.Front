@@ -7,9 +7,9 @@ export class Menu {
     status: boolean;
     show: boolean;
     subMenu: Menu[];
-    level: number
-
-    constructor(idMenu: number, name: string, route: string, icon: string, idParent: number, status: boolean) {
+    level: number;
+ 
+    constructor(idMenu: number, name: string, route: string, icon: string, idParent: number, status: boolean, show: boolean) {
         this.idMenu = idMenu;
         this.name = name;
         this.route = route;
@@ -19,5 +19,6 @@ export class Menu {
         this.show = false
         this.subMenu = []
         this.level = 1
+        this.show = true
     }
 }

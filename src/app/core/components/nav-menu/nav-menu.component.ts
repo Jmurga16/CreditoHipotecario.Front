@@ -72,6 +72,10 @@ export class NavMenuComponent implements OnInit {
         //#region Menu Nivel 2
         this.ListMenu.forEach(element => {
 
+          if (localStorage.getItem("usertype") != "1" && element.idMenu != 1) {
+            element.show = false
+          }
+
           data.forEach(option => {
             if (element.idMenu == option.idParent && option.level == 2) {
               if (element.subMenu == undefined) {
@@ -82,7 +86,7 @@ export class NavMenuComponent implements OnInit {
           });
         });
         //#endregion
-
+        console.log(this.ListMenu)
       },
       error: (e) => {
         console.error(e)

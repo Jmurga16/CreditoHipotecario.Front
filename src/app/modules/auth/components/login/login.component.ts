@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
 
         else if (data[0].idUser > 0) {
           localStorage.setItem("username", this.User.value);
+          localStorage.setItem("usertype", data[0].idUserType);
           this.router.navigate(['/inicio']);
         }
         else {
