@@ -6,16 +6,16 @@ const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
-        /* children: [
+        children: [
             {
-                path: 'users',
-                loadChildren: () => import('../../../modules/users/users.module').then(m => m.UsersModule)
+                path: 'inicio',
+                loadChildren: () => import('../../../modules/home/home.module').then(m => m.HomeModule)
             },
             {
-                path: 'inventory',
-                loadChildren: () => import('../../../modules/inventory/inventory.module').then(m => m.InventoryModule)
-            },
-        ] */
+                path: 'perfil',
+                loadChildren: () => import('../../../modules/perfil/perfil.module').then(m => m.PerfilModule)
+            }
+        ]
     },
 
     {

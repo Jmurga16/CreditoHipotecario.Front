@@ -14,7 +14,7 @@
 }
 
 h1.app-name {
-    margin-left: 8px;
+    display: table-cell;
 }
 
 .menu-sidenav-container {
@@ -65,8 +65,28 @@ h1.app-name {
 }
 
 .clsBtnLogOut {
-    margin-left    : auto;
     color          : white;
     text-decoration: none;
     cursor         : pointer;
+    display        : table-cell;
+    padding        : 1rem;
+}
+
+.clsLeft {
+    margin-left: auto;
+
+}
+
+.user-name {
+    display: table-cell;
+}
+
+img {
+    filter: invert(100%)
+}
+
+@media only screen and (max-device-width: 500px) {
+    .user-name {
+        display: none
+    }
 }

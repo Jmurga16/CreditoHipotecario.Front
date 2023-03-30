@@ -4,9 +4,17 @@
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <h1 class="app-name">{{Username}}</h1>
+        <div>
+            
+            <img src="./../../../../assets/img/logo-credito-hipotecario.png" width="100px"/>
+            
+        </div>
+        <div class="clsLeft">
+            <h1 class="user-name">{{Username}} |</h1>
 
-        <a class="clsBtnLogOut" (click)="fnLogout()">Cerrar Sesión</a>
+            <a class="clsBtnLogOut" (click)="fnLogout()">Cerrar Sesión</a>
+        </div>
+
 
     </mat-toolbar>
 
@@ -18,7 +26,7 @@
                 <div *ngFor="let nav of ListMenu; let index = index">
                     <mat-list-item (click)="nav.subMenu!=null  ? fnShowSubMenu(index)  : fnRouting(nav.route)"
                         class="parent">
-                        <span class="full-width"  [ngClass]="{active: nav.route == getRouterURL}">{{nav.name}}</span>
+                        <span class="full-width" [ngClass]="{active: nav.route == getRouterURL}">{{nav.name}}</span>
                         <mat-icon mat-list-icon>{{nav.icon}}</mat-icon>
                         <mat-icon class="menu-button" [ngClass]="{rotated : nav.show}" *ngIf="nav.subMenu!=null">
                             expand_more

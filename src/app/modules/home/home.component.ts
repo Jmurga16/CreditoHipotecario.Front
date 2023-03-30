@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: "app-perfil",
+    selector: "app-home",
     template: "<router-outlet></router-outlet>",
 
 })
 
-export class PerfilComponent {
+export class HomeComponent {
 
     constructor() { }
 

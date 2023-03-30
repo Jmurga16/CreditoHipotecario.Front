@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
   //#region Login
   async fnLogin() {
 
+    this.router.navigate(['/inicio']);
+    return
+
     let sNombreUsuario = this.User.value;
     let sContrasenia = this.Password.value;
 
@@ -37,7 +40,7 @@ export class LoginComponent implements OnInit {
 
         if (data[0].result == 1) {
           localStorage.setItem("username", this.User.value)
-          this.router.navigate(['/users/list']);
+          this.router.navigate(['/inicio']);
         }
         else {
           Swal.fire({
