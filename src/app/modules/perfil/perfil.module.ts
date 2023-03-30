@@ -17,15 +17,19 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from "@angular/material/card";
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { PerfilComponent } from './perfil.component';
-
+import { PersonalComponent } from './components/personal/personal.component';
+import { PasswordComponent } from './components/password/password.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
     declarations: [
         PerfilComponent,
-
+        PersonalComponent,
+        PasswordComponent
     ],
     imports: [
         CommonModule,
@@ -46,7 +50,9 @@ import { PerfilComponent } from './perfil.component';
         MatTableModule,
         MatDialogModule,
         MatDatepickerModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatCardModule,
+        MatProgressBarModule
     ],
     exports: [RouterModule],
 })
