@@ -29,33 +29,45 @@ export class LoginComponent implements OnInit {
   //#region Login
   async fnLogin() {
 
-    this.router.navigate(['/inicio']);
-    return
-
     let sNombreUsuario = this.User.value;
     let sContrasenia = this.Password.value;
 
-    await this.authService.Login(sNombreUsuario, sContrasenia).subscribe({
-      next: (data) => {
 
-        if (data[0].result == 1) {
-          localStorage.setItem("username", this.User.value)
-          this.router.navigate(['/inicio']);
-        }
-        else {
+    this.authService.Login(sNombreUsuario, sContrasenia).subscribe({
+      next: (data: any) => {
+        console.log(data);
+
+        if (data == null || data.length == 0) {
           Swal.fire({
             title: `Ingrese los datos correctamente.`,
             icon: 'warning',
             timer: 1500
           });
         }
+
+        else if (data[0].idUser > 0) {
+          localStorage.setItem("username", this.User.value);
+          this.router.navigate(['/inicio']);
+        }
+        else {
+          Swal.fire({
+            title: data[0].message,
+            icon: 'warning',
+            timer: 3500
+          });
+        }
+
       },
       error: (e) => {
-        console.error(e)
+        console.error(e);
       }
     });
+
+
   }
   //#endregion
+
+
 
 
 

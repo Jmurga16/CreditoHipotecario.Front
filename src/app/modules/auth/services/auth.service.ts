@@ -25,8 +25,8 @@ export class AuthService {
         const httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         const params = {
-            sNombreUsuario: sNombreUsuario,
-            sContrasenia: sContrasenia
+            UserName: sNombreUsuario,
+            Password: sContrasenia
         };
 
         return this.httpClient.post(urlEndPoint, JSON.stringify(params), { headers: httpHeaders });
