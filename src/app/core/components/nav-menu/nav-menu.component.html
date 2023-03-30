@@ -5,9 +5,9 @@
             <mat-icon>menu</mat-icon>
         </button>
         <div>
-            
-            <img src="./../../../../assets/img/logo-credito-hipotecario.png" width="100px"/>
-            
+
+            <img src="./../../../../assets/img/logo-credito-hipotecario.png" width="100px" />
+
         </div>
         <div class="clsLeft">
             <h1 class="user-name">{{Username}} |</h1>
@@ -35,7 +35,7 @@
 
                     <div class="submenu" [ngClass]="{expanded : nav.show }" *ngIf="nav.show">
                         <div *ngFor="let sub1 of nav.subMenu">
-                            <div *ngIf="nav.idMenu==sub1.idParent">
+                            <div *ngIf="nav.idMenu==sub1.idParent" (click)="fnRouting(sub1.route)">
                                 <mat-list-item class="parent">
                                     <span class="full-width">{{sub1.name}}</span>
                                     <mat-icon mat-list-icon>{{sub1.icon}}</mat-icon>

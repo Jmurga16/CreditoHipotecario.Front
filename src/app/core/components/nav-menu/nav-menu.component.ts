@@ -71,9 +71,12 @@ export class NavMenuComponent implements OnInit {
 
         //#region Menu Nivel 2
         this.ListMenu.forEach(element => {
+
           data.forEach(option => {
             if (element.idMenu == option.idParent && option.level == 2) {
-              element.subMenu = []
+              if (element.subMenu == undefined) {
+                element.subMenu = []
+              }
               element.subMenu.push(option)
             }
           });

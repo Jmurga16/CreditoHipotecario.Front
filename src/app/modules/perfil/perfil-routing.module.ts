@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PasswordComponent } from './components/password/password.component';
+import { PersonalComponent } from './components/personal/personal.component';
 import { PerfilComponent } from './perfil.component';
 
 
@@ -8,7 +10,7 @@ const routes: Routes = [
         path: "",
         component: PerfilComponent,
         children: [
-            /* {
+            {
                 path: "personal",
                 component: PersonalComponent,
                 data: {
@@ -21,7 +23,7 @@ const routes: Routes = [
                 data: {
                     route: "perfil/password"
                 }
-            } */
+            }
         ],
     },
 ];
