@@ -19,6 +19,9 @@ export class NavMenuComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   checkedDemo = new FormControl(true);
+  lastSession: any = ""
+
+  lastAccess: string = ""
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -31,6 +34,9 @@ export class NavMenuComponent implements OnInit {
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
 
     this.Username = localStorage.getItem("username")
+    this.lastSession = localStorage.getItem("lastSession")
+
+
   }
 
 
@@ -45,7 +51,7 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
 
     this.fnListMenu()
-
+    this.getLastSession();
   }
   //#endregion
 
@@ -140,6 +146,24 @@ export class NavMenuComponent implements OnInit {
   //#endregion 
 
 
+  //#region Obtener Fecha ultimo acceso
+  getLastSession() {
+    let objectDate = new Date(this.lastSession);
 
+    let day = objectDate.getDate().toString().padStart(2, "0");
+    let month = objectDate.getMonth() + 1;
+    let year = objectDate.getFullYear();
+
+    let format1 = day + "-" + month.toString().padStart(2, "0") + "-" + year;
+
+    let hour = objectDate.getHours();
+    let minutes = objectDate.getMinutes().toString().padStart(2, "0");
+
+    let time = hour + ":" + minutes;
+
+    this.lastAccess = "Fecha de último acceso: " + format1 + " / " + time
+
+  }
+  //#endregion
 
 }

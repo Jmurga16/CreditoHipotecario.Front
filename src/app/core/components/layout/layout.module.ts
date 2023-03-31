@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
@@ -35,7 +36,8 @@ import { LayoutComponent } from './layout.component';
         MatInputModule,
         MatPaginatorModule,
         MatToolbarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatTooltipModule
     ],
     exports: [RouterModule],
 })

@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
         else if (data[0].idUser > 0) {
           localStorage.setItem("username", this.User.value);
           localStorage.setItem("usertype", data[0].idUserType);
+          let actualDate = new Date().toString()
+          localStorage.setItem("lastSession", actualDate);
+
           this.router.navigate(['/inicio']);
         }
         else {
