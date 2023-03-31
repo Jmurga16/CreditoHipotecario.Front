@@ -28,26 +28,22 @@ export class PasswordComponent implements OnInit {
 
 
   fnSave() {
-
-    let cadena = "string"
-
-    console.log(cadena.split(""))
+ 
 
   }
 
-  validateMinus() {
+  //#region Validar Contraseña Vacia
+  get emptyPassword() {
     let cadena = this.formPassword.controls["newPassword"].value
-    let IsValid: boolean = false
 
-    cadena.split("").forEach((element: any) => {
-      if (element === element.toLowerCase()) {
-        IsValid = true
-      }
-    });
+    return cadena == "" ? true : false
 
   }
+  //#endregion
 
-  validateMayus() {
+
+  //#region Validar Mayusculas
+  get validateMayus() {
     let cadena = this.formPassword.controls["newPassword"].value
     let IsValid: boolean = false
 
@@ -57,37 +53,71 @@ export class PasswordComponent implements OnInit {
       }
     });
 
+    return IsValid
   }
+  //#endregion
 
-  validateNumber() {
+
+  //#region Validar Minusculas
+  get validateMinus() {
     let cadena = this.formPassword.controls["newPassword"].value
     let IsValid: boolean = false
 
     cadena.split("").forEach((element: any) => {
-      if (typeof (element) == 'number') {
+      if (element === element.toLowerCase()) {
         IsValid = true
       }
     });
 
+    return IsValid;
   }
+  //#endregion
 
 
+  //#region Validar Numeros
+  get validateNumber() {
+    let cadena = this.formPassword.controls["newPassword"].value
+    let IsValid: boolean = false
+    const isNumeric = (n: any) => !isNaN(n);
 
-  validateSpecial() {
+    cadena.split("").forEach((element: any) => {
+
+      if (isNumeric(element)) {
+        IsValid = true
+      }
+    });
+
+    return IsValid
+  }
+  //#endregion
+
+
+  //#region Validar Caracteres especiales
+  get validateSpecial() {
     let cadena = this.formPassword.controls["newPassword"].value
     let IsValid: boolean = false
     let Patron = "[!\"·$%&/()=¿¡?'_:;,|@#€*+.]";
 
     cadena.split("").forEach((element: any) => {
       let result = cadena.match(Patron)
-      console.log(result)
-      /* if (cadena.match(Patron)) {
-        console.log()
-      } */
+      if (result != null) {
+        IsValid = true;
+      }
     });
 
+    return IsValid
+
   }
+  //#endregion
 
 
+  //#region Validar Contraseña Mayor a 10 caracteres
+  get passwordLength() {
+    let cadena = this.formPassword.controls["newPassword"].value
+
+    return cadena.length > 10 ? true : false
+
+  }
+  //#endregion
 
 }
