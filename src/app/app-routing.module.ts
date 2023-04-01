@@ -15,7 +15,11 @@ const routes: Routes = [
       import('./core/components/layout/layout.module').then((m) => m.LayoutModule),
   },
   {
-    path: '**', redirectTo: 'auth/login', pathMatch: 'full'
+    path: '**',  redirectTo: 'auth/login', pathMatch: 'full'
+  }
+  ,
+  {
+    path: '*', redirectTo: 'auth/login', pathMatch: 'full'
   }
 ];
 @NgModule({

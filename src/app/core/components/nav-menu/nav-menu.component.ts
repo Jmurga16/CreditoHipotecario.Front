@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { FormControl } from '@angular/forms';
 import { MenuService } from '../../services/menu.service';
 import { Menu } from '../../models/Menu';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -27,7 +28,8 @@ export class NavMenuComponent implements OnInit {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private router: Router,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private authService: AuthService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -92,7 +94,7 @@ export class NavMenuComponent implements OnInit {
           });
         });
         //#endregion
-        console.log(this.ListMenu)
+    
       },
       error: (e) => {
         console.error(e)
@@ -106,7 +108,7 @@ export class NavMenuComponent implements OnInit {
 
   //#region Cerrar Sesión
   fnLogout() {
-    this.router.navigate(['/', 'login']);
+    this.authService.Logout()
   }
   //#endregion
 

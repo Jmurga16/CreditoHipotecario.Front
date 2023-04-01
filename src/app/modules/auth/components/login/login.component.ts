@@ -23,6 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let bValue = localStorage.getItem("username") != null ? true : false
+
+    if (bValue) {
+      localStorage.removeItem("username");
+    }
   }
 
 
@@ -35,7 +40,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.Login(sNombreUsuario, sContrasenia).subscribe({
       next: (data: any) => {
-        console.log(data);
+   
 
         if (data == null || data.length == 0) {
           Swal.fire({
@@ -46,10 +51,8 @@ export class LoginComponent implements OnInit {
         }
 
         else if (data[0].idUser > 0) {
-          localStorage.setItem("username", this.User.value);
-          localStorage.setItem("usertype", data[0].idUserType);
-          let actualDate = new Date().toString()
-          localStorage.setItem("lastSession", actualDate);
+
+          this.authService.setDataUser(this.User.value, data)
 
           this.router.navigate(['/inicio']);
         }

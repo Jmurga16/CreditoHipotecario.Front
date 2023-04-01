@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PasswordService } from '../../services/password.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-password',
@@ -12,8 +15,9 @@ export class PasswordComponent implements OnInit {
   formPassword: FormGroup
 
   constructor(
-    private formBuilder: FormBuilder
-
+    private formBuilder: FormBuilder,
+    private passwordService: PasswordService,
+    private router: Router
   ) {
     this.formPassword = this.formBuilder.group({
       oldPassword: ["", Validators.required],
@@ -29,6 +33,52 @@ export class PasswordComponent implements OnInit {
 
   fnSave() {
 
+    let userName = localStorage.getItem("username");
+    let oldPassword = this.formPassword.controls["oldPassword"].value;
+    let newPassword = this.formPassword.controls["newPassword"].value;
+
+    this.passwordService.ChangePassword(userName, oldPassword, newPassword).subscribe({
+      next: (data: any) => {
+
+        if (data == null || data.length == 0) {
+          Swal.fire({
+            title: `Error, por favor contacte con sistemas.`,
+            icon: 'error',
+            timer: 3500
+          });
+        }
+        else if (data[0].result=="success") {
+          Swal.fire({
+            title: `Contraseña cambiada correctamente.`,
+            icon: 'success',
+            timer: 3000
+          });
+
+          this.router.navigate(['/perfil/personal']);
+
+        }
+        else if (data[0].result == "error") {
+
+          Swal.fire({
+            title: `La contraseña actual no coincide.`,
+            icon: 'warning',
+            timer: 3000
+          });
+
+        }
+        else if (data[0].result == "repeat") {
+          Swal.fire({
+            title: "La nueva contraseña no puede ser igual que una usada anteriormente.",
+            icon: 'warning',
+            timer: 3000
+          });
+        }
+
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    });
 
   }
 
@@ -133,5 +183,7 @@ export class PasswordComponent implements OnInit {
     }
   }
   //#endregion
+
+
 
 }

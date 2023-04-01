@@ -33,16 +33,31 @@ export class AuthService {
     }
     //#endregion
 
+
+    //#region Asignar Datos de Usuario
+    setDataUser(user: any, data: any) {
+        localStorage.setItem("username", user);
+
+        localStorage.setItem("idUser", data[0].idUser);
+        localStorage.setItem("usertype", data[0].idUserType);
+        let actualDate = new Date().toString()
+        localStorage.setItem("lastSession", actualDate);
+    }
+    //#endregion
+
+
     //#region Obtener Nombre de Usuario
     get currentUserValue(): boolean {
         let bValue: boolean = false;
 
+      
         bValue = localStorage.getItem("username") != null ? true : false
 
         return bValue
 
     }
     //#endregion
+
 
     //#region Servicio Cerrar Sesion
     Logout() {
