@@ -28,7 +28,7 @@ export class PasswordComponent implements OnInit {
 
 
   fnSave() {
- 
+
 
   }
 
@@ -117,6 +117,20 @@ export class PasswordComponent implements OnInit {
 
     return cadena.length > 10 ? true : false
 
+  }
+  //#endregion
+
+
+  //#region Validar Contraseñas
+  get validateSave() {
+    let newPassword = this.formPassword.controls["newPassword"].value
+    let rePassword = this.formPassword.controls["rePassword"].value
+    if (newPassword == rePassword && this.validateMayus && this.validateMinus && this.validateNumber && this.validateSpecial && this.passwordLength) {
+      return true
+    }
+    else {
+      return false
+    }
   }
   //#endregion
 
